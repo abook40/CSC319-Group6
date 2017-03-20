@@ -1,0 +1,6 @@
+Use Case Diagram Description:
+
+1) Reviewer enters "review" (containing a score and a comment) into file
+2) "HashTable" includes a directory of all words entered by reviewers, and averages the scores of each word
+3) "Analyse all reviews" use case accesses the HashTable
+4) Analyst tries to predict the positivity of a completely random comment by using "Analyse all reviews" 
