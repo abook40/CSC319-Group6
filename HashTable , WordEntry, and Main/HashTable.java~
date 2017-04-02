@@ -1,0 +1,13 @@
+public class HashTable{
+  private int WordEntry;
+  private int size;
+  public HashTable(int size){
+    this.size = size;
+  }
+  private int computeHash(String s){
+    return WordEntry;
+  }
+  public boolean contains(String s){
+    return false;
+  }
+}
