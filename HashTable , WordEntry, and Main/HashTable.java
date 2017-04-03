@@ -14,7 +14,7 @@ public class HashTable{
   public void put(String s , int score){
     for(int i=0;i<size;i++){
        if(Word[i]!=null){
-    if(Word[i].getWord().equals(s)){
+    if(Word[i].getWord().equalsIgnoreCase(s)){
         Word[i].addNewAppearance(score);
         break;
       }
@@ -50,5 +50,13 @@ public class HashTable{
       }
     }
     return x;
+  }
+  
+  public void print(){
+    for(int i=0;i<size;i++){
+      if(Word[i]!=null){
+      System.out.println(i+" = "+Word[i].getWord());
+      }
+    }
   }
 }
