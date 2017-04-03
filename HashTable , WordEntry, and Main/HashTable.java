@@ -30,7 +30,7 @@ public class HashTable{
     double x =2.0;
     for(int i=0;i<size;i++){
       if(Word[i]!=null){
-      if(Word[i].getWord().equals(s)){
+      if(Word[i].getWord().equalsIgnoreCase(s)){
         x=Word[i].getAverage();
         break;
       }
