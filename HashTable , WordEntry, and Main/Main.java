@@ -3,21 +3,38 @@
   import java.io.FileReader;
   import java.io.IOException;
   public class Main{
-    public static void main(String args[])
-    {
+    
     private String line;
     private int score;
-    privte HashTable table(int size);
-    private String message;
+    //privte HashTable table(int size);
+    private String message = "";
     public Main()
     {
-   HarshTable ht = new HarshTable(2000);
-   
+      HarshTable table = new HarshTable(2000);
+      
     }
-    public createHarshTable(int size)
-    {
     
+    public int getScore()
+    {
+    return score;
     }
+    public String getSpace()
+    {
+    return "";
     }
+    public String getTextLine()
+    {
+    return "";
     }
+    public int getTextLength(){
+    return 0;
   }
+  public String getLine(String message)
+  {
+  return "";
+  }
+  public String getString(String message.substring(0 , getTextLength())){
+    return "";
+}
+    }
+  
