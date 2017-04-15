@@ -1,3 +1,5 @@
+package moviereview;
+
 public class WordEntry{
   private String Word;
   private int numAppearances=0;
@@ -10,7 +12,7 @@ public class WordEntry{
   }
   public void addNewAppearance(int s){
     totalScore+=s;
-    numAppearances++;;
+    numAppearances++;
   }
   public String getWord(){
     return Word;

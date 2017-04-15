@@ -1,3 +1,5 @@
+package moviereview;
+
 public class HashTable{
   private WordEntry []Word;
   private int size;
