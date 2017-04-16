@@ -1,4 +1,3 @@
-package moviereview;
 
 public class HashTable{
   private WordEntry []Word;
@@ -9,56 +8,44 @@ public class HashTable{
     Word = new WordEntry [size];
   }
   
-  private int computeHash(String s){
-    return 0;
+  public int computeHash(String s){
+    int x = 2;
+    s = s.toUpperCase();
+        for(int i=0;i<s.length();i++){
+          x = (x*2)+(int)s.charAt(i);
+    }
+        return x%size;
   }
   
   public void put(String s , int score){
-    for(int i=0;i<size;i++){
-       if(Word[i]!=null){
-    if(Word[i].getWord().equalsIgnoreCase(s)){
-        Word[i].addNewAppearance(score);
-        break;
-      }
-       }
-       else{
-        Word[i] =new WordEntry(s,score);
-        break;
-       }
-    }
+    if(contains(s))
+        Word[computeHash(s)].addNewAppearance(score);
+       else
+        Word[computeHash(s)] =new WordEntry(s,score);
   }
   
   public double getAverage(String s){
     double x =2.0;
-    for(int i=0;i<size;i++){
-      if(Word[i]!=null){
-      if(Word[i].getWord().equalsIgnoreCase(s)){
-        x=Word[i].getAverage();
-        break;
-      }
-      }
+    if(contains(s)){
+        x=Word[computeHash(s)].getAverage();
     }
     return x;
   }
   
   public boolean contains(String s){
     boolean x = false;
-    for(int i=0;i<size;i++){
-      if(Word[i]!=null){
-      if(Word[i].getWord().equals(s)){
-        x=true;
-        break;
-      }
-      }
+    if(Word[computeHash(s)]!=null){
+      x=true;
     }
     return x;
   }
   
-  public void print(){
-    for(int i=0;i<size;i++){
-      if(Word[i]!=null){
-      System.out.println(i+" = "+Word[i].getWord());
-      }
+  public String get(int x){ // just for testing.
+    String w = "";
+    if(Word[x]!=null){
+      w = Word[x].getWord();
     }
+    
+    return w;
   }
 }

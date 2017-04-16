@@ -8,13 +8,22 @@ public class HashTable{
   }
   
   private int computeHash(String s){
-    return 0;
+    int x = 0;
+        for(int i=0;i<size;i++){
+      if(Word[i]!=null){
+      if(Word[i].getWord().equalsIgnoreCase(s)){
+        x=Word[i].hashCode();
+        break;
+      }
+      }
+    }
+    return x;
   }
   
   public void put(String s , int score){
     for(int i=0;i<size;i++){
        if(Word[i]!=null){
-    if(Word[i].getWord().equals(s)){
+    if(Word[i].getWord().equalsIgnoreCase(s)){
         Word[i].addNewAppearance(score);
         break;
       }
@@ -30,7 +39,7 @@ public class HashTable{
     double x =2.0;
     for(int i=0;i<size;i++){
       if(Word[i]!=null){
-      if(Word[i].getWord().equals(s)){
+      if(Word[i].getWord().equalsIgnoreCase(s)){
         x=Word[i].getAverage();
         break;
       }
@@ -55,7 +64,8 @@ public class HashTable{
   public void print(){
     for(int i=0;i<size;i++){
       if(Word[i]!=null){
-      System.out.println(i+" = "+Word[i].getWord());
+      System.out.print(i+" = "+Word[i].getWord() );
+       System.out.println(" Average = "+Word[i].getAverage());
       }
     }
   }
