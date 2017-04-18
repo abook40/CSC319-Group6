@@ -8,7 +8,7 @@ public class HashTable{
     Word = new WordEntry [size];
   }
   
-  public int computeHash(String s){
+  private int computeHash(String s){
     int x = 2;
     s = s.toUpperCase();
         for(int i=0;i<s.length();i++){
