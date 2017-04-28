@@ -9,19 +9,21 @@ public class HashTable{
   }
   
   private int computeHash(String s){
-    int x = 2;
-    s = s.toUpperCase();
+    int x = 0;
         for(int i=0;i<s.length();i++){
-          x = (x*2)+(int)s.charAt(i);
+          int h = s.charAt(i);
+          x = (x*27+h)%size;
     }
-        return x%size;
+        return x;
   }
   
   public void put(String s , int score){
+
     if(contains(s))
         Word[computeHash(s)].addNewAppearance(score);
-       else
-        Word[computeHash(s)] =new WordEntry(s,score);
+    else
+         Word[computeHash(s)] =new WordEntry(s,score);
+       
   }
   
   public double getAverage(String s){
@@ -33,11 +35,10 @@ public class HashTable{
   }
   
   public boolean contains(String s){
-    boolean x = false;
-    if(Word[computeHash(s)]!=null){
-      x=true;
+    if(Word[computeHash(s)]!=null&&Word[computeHash(s)].getWord().equals(s)){
+     return true;
     }
-    return x;
+    return false;
   }
   
   public String get(int x){ // just for testing.
