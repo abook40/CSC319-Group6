@@ -9,44 +9,81 @@ public class HashTable{
   }
   
   private int computeHash(String s){
-    int x = 0;
-        for(int i=0;i<s.length();i++){
-          int h = s.charAt(i);
-          x = (x*27+h)%size;
-    }
-        return x;
-  }
-  
-  public void put(String s , int score){
-
-    if(contains(s))
-        Word[computeHash(s)].addNewAppearance(score);
-    else
-         Word[computeHash(s)] =new WordEntry(s,score);
-       
-  }
-  
-  public double getAverage(String s){
-    double x =2.0;
-    if(contains(s)){
-        x=Word[computeHash(s)].getAverage();
+    String a = s.toUpperCase();
+    int x = 7;
+    for(int i=0;i<a.length();i++){
+      int h = a.charAt(i);
+      x = (x*31+h)%size;
     }
     return x;
   }
   
+  public void put(String s , int score){
+    if(contains(s)){
+      Word[computeHash(s)].addNewAppearance(score);
+      //System.out.println("***** "+  s + " Total Appearances : " + Word[computeHash(s)].numAppearances );
+    }
+    else {
+      // int count =0;
+      int hash = computeHash(s);
+      while(true){
+        if(Word[hash]==null){
+          System.out.println(" Insert the word : " +s + " in " + hash);
+          Word[hash] =new WordEntry(s,score);
+          break;
+        }
+        //count++;
+//System.out.println(" Collision occured at : " + hash +"  With the word  "+" | " + s +" | " + " and " +" | " + Word[hash].getWord()+" | " + " getting to hash : " + (hash+1) + " number of changes : "+ count);
+        hash++;
+        if(hash ==size){
+          hash=0;
+        }
+      }
+    }
+  }
+  
+  
+  public double getAverage(String s){
+    double x =2.0;
+    if(contains(s)){
+      x=Word[search(s)].getAverage();
+    }
+    return x;
+  }
+  
+  
+  public int search(String s){
+    String a = s.toUpperCase();
+    int hash = computeHash(s);
+    while(Word[hash]!=null){
+      String b = Word[hash].getWord().toUpperCase();
+      if(b.equals(a))
+        return hash;
+      else
+        hash++;
+      if(hash==size){
+        hash=0;
+      }
+    }
+    return hash;
+  }
+  
+  
   public boolean contains(String s){
-    if(Word[computeHash(s)]!=null&&Word[computeHash(s)].getWord().equals(s)){
-     return true;
+    String a =s.toUpperCase();
+    int hash = computeHash(s);
+    while(Word[hash]!=null){
+      String b = Word[hash].getWord().toUpperCase();
+      if(b.equals(a))
+        return true;
+      else{
+        hash++;
+        if(hash==size){
+          hash=0;
+        }
+      }
     }
     return false;
   }
   
-  public String get(int x){ // just for testing.
-    String w = "";
-    if(Word[x]!=null){
-      w = Word[x].getWord();
-    }
-    
-    return w;
-  }
 }
