@@ -28,7 +28,7 @@ public class HashTable{
       int hash = computeHash(s);
       while(true){
         if(Word[hash]==null){
-          System.out.println(" Insert the word : " +s + " in " + hash);
+          //System.out.println(" Insert the word : " +s + " in " + hash);
           Word[hash] =new WordEntry(s,score);
           break;
         }
