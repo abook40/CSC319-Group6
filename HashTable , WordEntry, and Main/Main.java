@@ -52,10 +52,13 @@ public class Main {
       int score = Integer.parseInt(token.nextToken());
       while (token.hasMoreTokens()) {
         message = token.nextToken();
+        if(!message.equals(" ") && !message.equals("'"))
+        {
         table.put(message, score);
         count++;
         
         tscore+=table.getAverage(message);
+        }
       }
       double ttScore = tscore/count;
       System.out.println(" The review has an average value of " + ttScore );
