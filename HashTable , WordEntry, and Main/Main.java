@@ -52,7 +52,7 @@ public class Main {
       int score = Integer.parseInt(token.nextToken());
       while (token.hasMoreTokens()) {
         message = token.nextToken();
-        if(!message.equals(" ") && !message.equals("'"))
+        if(!message.equals(" ") && !message.equals(" '") && !message.equals(",") && !message.equals("."))
         {
         table.put(message, score);
         count++;
