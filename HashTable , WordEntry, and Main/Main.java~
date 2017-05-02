@@ -10,63 +10,74 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    public static void main(String args[]) throws IOException {
-
-        HashTable table = new HashTable(20000);
-        /*
-    File file = new File("movieReviews.txt");
-    BufferedReader reader = null;
+  
+  public static void main(String args[]) throws IOException {
     
-               int x = 1;
-    try{
-      reader = new BufferedReader(new FileReader(file));
-      if(reader.readLine() == null)
-      {
-        System.out.println("Cound not open file");
-      }
-      else{
-         table = new HashTable(2000);
-        while((line = reader.readLine()) != null)
+    HashTable table = new HashTable(20000);
+    /*
+     File file = new File("movieReviews.txt");
+     BufferedReader reader = null;
+     
+     int x = 1;
+     try{
+     reader = new BufferedReader(new FileReader(file));
+     if(reader.readLine() == null)
+     {
+     System.out.println("Cound not open file");
+     }
+     else{
+     table = new HashTable(2000);
+     while((line = reader.readLine()) != null)
+     {
+     score = Integer.parseInt(message.substring(0 , 1));
+     
+     message = line.substring(x , message.indexOf(" "));
+     x += message.indexOf(" ");
+     }
+     }
+     } catch (FileNotFoundException e){
+     } catch(IOException e){
+     }
+     */
+     int count;
+      double tscore;
+      int gg=0;
+    List<String> lines = readLines("movieReviews.txt");
+    for (String a : lines) {
+      System.out.println("enter a review -- Press return to exit:");
+      System.out.println(a.substring(1,a.length()-1));
+      gg++;
+      StringTokenizer token = new StringTokenizer(a, " ");
+      String message;
+      
+     count =0;
+       tscore = 0;
+      int score = Integer.parseInt(token.nextToken());
+      while (token.hasMoreTokens()) {
+        message = token.nextToken();
+        if(!message.equals(" ") && !message.equals(" '") && !message.equals(",") && !message.equals("."))
         {
-          score = Integer.parseInt(message.substring(0 , 1));
-
-          message = line.substring(x , message.indexOf(" "));
-         x += message.indexOf(" ");
+        table.put(message, score);
+        count++;
+        
+        tscore+=table.getAverage(message);
         }
       }
-    } catch (FileNotFoundException e){
-    } catch(IOException e){
+      double ttScore = tscore/count;
+      System.out.println(gg +". "+" The review has an average value of " + ttScore );
+     System.out.println( (ttScore>=2  ?  " Positive Sentiment " :   " Negative Sentiment "));
+      System.out.println();
     }
-         */
-
-        List<String> lines = readLines("movieReviews.txt");
-        int sen =0;
-        for (String a : lines) {
-            StringTokenizer token = new StringTokenizer(a, " ");
-            String message;
-          
-            int count =0;
-            double tscore = 0;
-            int score = Integer.parseInt(token.nextToken());
-            while (token.hasMoreTokens()) {
-                message = token.nextToken();
-                table.put(message, score);
-                count++;
-                
-                tscore+=table.getAverage(message);
-            }
-            double ttScore = tscore/count;
-         
-            System.out.println(   sen++);
-            //System.out.println(sen+". "+" The review has an average value of " + ttScore +  (ttScore>=2  ?  " Positive Sentiment " :   " Negative Sentiment "));
-        }
- 
-    }
-
-    private static List<String> readLines(String file) throws IOException {
-        
-        return Files.readAllLines(Paths.get(file));
-        
-    }
+   /* for(int i=0;i<20000;i++){
+      System.out.println
+    }*/
+      
+      
+  }
+  
+  private static List<String> readLines(String file) throws IOException {
+    
+    return Files.readAllLines(Paths.get(file));
+    
+  }
 }
