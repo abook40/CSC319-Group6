@@ -8,12 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.text.DecimalFormat;
 
 public class Main {
   
   public static void main(String args[]) throws IOException {
     
     HashTable table = new HashTable(20000);
+    DecimalFormat df = new DecimalFormat();
+    df.applyPattern("0.00");
+
     /*
      File file = new File("movieReviews.txt");
      BufferedReader reader = null;
@@ -52,7 +56,7 @@ public class Main {
       int score = Integer.parseInt(token.nextToken());
       while (token.hasMoreTokens()) {
         message = token.nextToken();
-        if(!message.equals(" ") && !message.equals("'"))
+        if(!message.equals(" ") && !message.equals(" '") && !message.equals(",") && !message.equals("."))
         {
         table.put(message, score);
         count++;
@@ -61,7 +65,7 @@ public class Main {
         }
       }
       double ttScore = tscore/count;
-      System.out.println(" The review has an average value of " + ttScore );
+      System.out.println(" The review has an average value of " + df.format(ttScore) );
      System.out.println( (ttScore>=2  ?  " Positive Sentiment " :   " Negative Sentiment "));
       System.out.println();
     }
