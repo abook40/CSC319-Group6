@@ -1,4 +1,5 @@
 
+
 public class HashTable{
   private WordEntry []Word;
   private int size;
@@ -13,7 +14,7 @@ public class HashTable{
     int x = 7;
     for(int i=0;i<a.length();i++){
       int h = a.charAt(i);
-      x = (x*31+h)%size;
+      x = (x*27+h)%size;
     }
     return x;
   }
@@ -21,7 +22,7 @@ public class HashTable{
   public void put(String s , int score){
     if(contains(s)){
       Word[computeHash(s)].addNewAppearance(score);
-      //System.out.println("***** "+  s + " Total Appearances : " + Word[computeHash(s)].numAppearances );
+     // System.out.println("***** "+  s + " Total Appearances : " + Word[computeHash(s)].numAppearances );
     }
     else {
       // int count =0;
@@ -44,11 +45,10 @@ public class HashTable{
   
   
   public double getAverage(String s){
-    double x =2.0;
     if(contains(s)){
-      x=Word[search(s)].getAverage();
+      return Word[search(s)].getAverage();
     }
-    return x;
+return 2.0;
   }
   
   
